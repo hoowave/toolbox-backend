@@ -1,13 +1,14 @@
 package com.tools.toolbox.cutUrl.core;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Getter
 @NoArgsConstructor
@@ -18,15 +19,21 @@ public class CutUrl {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty(message = "URL은 필수값입니다.")
+    @Pattern(regexp = "^(https?://|www\\.)[\\w.-]+(?:\\.[\\w.-]+)+[/\\w\\-._~:/?#\\[\\]@!$&'()*+,;=]*$")
+    @Column(nullable = false, unique = true)
     private String originalUrl;
 
-    private String transUrl;
+    @Column(nullable = false, unique = true)
+    private String uuid;
+
+    private String createAt;
 
     @Builder
-    public CutUrl(String originalUrl, String transUrl) {
+    public CutUrl(String originalUrl, String uuid) {
+        SimpleDateFormat format = new SimpleDateFormat("YYYYMMddHHmmss");
         this.originalUrl = originalUrl;
-        this.transUrl = transUrl;
+        this.uuid = uuid;
+        this.createAt = format.format(new Date());
     }
 
 }

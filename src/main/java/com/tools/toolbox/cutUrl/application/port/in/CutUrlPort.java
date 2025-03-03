@@ -1,8 +1,11 @@
 package com.tools.toolbox.cutUrl.application.port.in;
 
-import com.tools.toolbox.cutUrl.core.CutUrl;
+import com.tools.toolbox.cutUrl.core.command.CutUrlGetCmd;
+import com.tools.toolbox.cutUrl.core.command.CutUrlPostCmd;
+import com.tools.toolbox.cutUrl.core.info.CutUrlInfo;
 
 public interface CutUrlPort {
-    void save();
+    CutUrlInfo process(CutUrlGetCmd cutUrlGetCmd);
+    CutUrlInfo translate(CutUrlPostCmd cutUrlPostCmd);
 
 }

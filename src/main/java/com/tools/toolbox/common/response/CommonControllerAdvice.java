@@ -15,7 +15,7 @@ public class CommonControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
     public ErrorResponse onException(Exception e) {
-        return ErrorResponse.response(ErrorCode.COMMON_SYSTEM_ERROR.getErrorMsg());
+        return ErrorResponse.response(MessageCode.COMMON_SYSTEM_ERROR.getMessage());
     }
 
     @ResponseBody
@@ -29,7 +29,7 @@ public class CommonControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ErrorResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
-        return ErrorResponse.response(ErrorCode.COMMON_INVALID_PARAMETER.getErrorMsg());
+        return ErrorResponse.response(MessageCode.COMMON_INVALID_PARAMETER.getMessage());
     }
 
 }
