@@ -1,8 +1,5 @@
 package com.tools.toolbox.cutUrl.application.dto;
 
-import com.tools.toolbox.common.response.CommonResponse;
-import com.tools.toolbox.common.response.MessageCode;
-import com.tools.toolbox.common.response.ResponseType;
 import com.tools.toolbox.cutUrl.core.command.CutUrlGetCmd;
 import com.tools.toolbox.cutUrl.core.info.CutUrlInfo;
 import jakarta.validation.constraints.Pattern;

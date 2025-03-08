@@ -10,7 +10,10 @@ public enum MessageCode {
     COMMON_INVALID_PARAMETER("요청한 값이 올바르지 않습니다."),
 
     CUTURL_SUCCESS("URL 변환이 완료되었습니다."),
-    CUTURL_PROCESS_ERROR("존재하지 않는 URL입니다.");
+    CUTURL_PROCESS_ERROR("존재하지 않는 URL입니다."),
+
+    API_GET_SUCCESS("GET 요청이 완료되었습니다."),
+    API_POST_SUCCESS("POST 요청이 완료되었습니다.");
 
     private final String message;
 

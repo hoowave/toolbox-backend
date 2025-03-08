@@ -21,7 +21,9 @@ public class CutUrlPostDto {
             if (!originalUrl.startsWith("http://") && !originalUrl.startsWith("https://")) {
                 originalUrl = "http://" + originalUrl;
             }
-            return CutUrlPostCmd.builder().originalUrl(originalUrl).build();
+            return CutUrlPostCmd.builder()
+                    .originalUrl(originalUrl)
+                    .build();
         }
     }
 

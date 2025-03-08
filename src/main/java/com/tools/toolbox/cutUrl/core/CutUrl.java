@@ -30,7 +30,7 @@ public class CutUrl {
 
     @Builder
     public CutUrl(String originalUrl, String uuid) {
-        SimpleDateFormat format = new SimpleDateFormat("YYYYMMddHHmmss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         this.originalUrl = originalUrl;
         this.uuid = uuid;
         this.createdAt = format.format(new Date());

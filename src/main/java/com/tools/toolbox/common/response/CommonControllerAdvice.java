@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 @ControllerAdvice
 public class CommonControllerAdvice {
@@ -29,6 +30,13 @@ public class CommonControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ErrorResponse methodArgumentNotValidException(MethodArgumentNotValidException e) {
+        return ErrorResponse.response(MessageCode.COMMON_INVALID_PARAMETER.getMessage());
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = {HandlerMethodValidationException.class})
+    public ErrorResponse handleValidationException(HandlerMethodValidationException e) {
         return ErrorResponse.response(MessageCode.COMMON_INVALID_PARAMETER.getMessage());
     }
 
