@@ -19,3 +19,10 @@ spring:
       hibernate:
         bytecode:
           format_sql: false
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    url: /api-docs
+    path: /custom-swagger-ui
