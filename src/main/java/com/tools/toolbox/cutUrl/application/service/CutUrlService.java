@@ -24,6 +24,7 @@ public class CutUrlService implements CutUrlPort {
     private final UUIDGenerator uuidGenerator;
 
     @Override
+    @Transactional
     public CutUrlInfo process(CutUrlGetCmd cutUrlGetCmd){
         Optional<CutUrl> existCutUrl = cutUrlRepositoryPort.findByUuid(cutUrlGetCmd.getUuid());
         if(existCutUrl.isEmpty()) throw new BaseException(MessageCode.CUTURL_PROCESS_ERROR.getMessage());

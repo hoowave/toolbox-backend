@@ -16,7 +16,7 @@ import java.util.Date;
 public class CutUrl {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Pattern(regexp = "^(https?://|www\\.)[\\w.-]+(?:\\.[\\w.-]+)+[/\\w\\-._~:/?#\\[\\]@!$&'()*+,;=]*$")
@@ -26,14 +26,14 @@ public class CutUrl {
     @Column(nullable = false, unique = true)
     private String uuid;
 
-    private String createAt;
+    private String createdAt;
 
     @Builder
     public CutUrl(String originalUrl, String uuid) {
         SimpleDateFormat format = new SimpleDateFormat("YYYYMMddHHmmss");
         this.originalUrl = originalUrl;
         this.uuid = uuid;
-        this.createAt = format.format(new Date());
+        this.createdAt = format.format(new Date());
     }
 
 }

@@ -1,0 +1,21 @@
+# application-prod.yml
+
+config:
+  domain: "http://localhost:8080/"
+
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://prod-db-server:3306/d_toolbox_prod?allowPublicKeyRetrieval=true&useSSL=false
+    username:
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        bytecode:
+          format_sql: false
