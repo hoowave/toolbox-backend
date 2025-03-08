@@ -4,8 +4,9 @@ import com.tools.toolbox.apiTest.domain.command.ApiTestGetCmd;
 import com.tools.toolbox.apiTest.domain.command.ApiTestPostCmd;
 import com.tools.toolbox.apiTest.domain.info.ApiTestGetInfo;
 import com.tools.toolbox.apiTest.domain.info.ApiTestPostInfo;
-import com.tools.toolbox.apiTest.infrastructure.ApiTestRepository;
 import com.tools.toolbox.apiTest.infrastructure.MemoryRepository;
+import com.tools.toolbox.apiTest.infrastructure.jpa.ApiTestJpaRepository;
+import com.tools.toolbox.apiTest.infrastructure.mybatis.ApiTestMybatisRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ApiTestServiceImpl implements ApiTestService {
 
-    private final ApiTestRepository apiTestRepository;
+    private final ApiTestJpaRepository apiTestRepository;
+//    private final ApiTestMybatisRepository apiTestRepository;
     private final MemoryRepository memoryRepository;
 
     @Override
