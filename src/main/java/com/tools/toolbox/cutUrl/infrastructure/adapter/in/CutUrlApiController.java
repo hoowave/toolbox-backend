@@ -13,7 +13,6 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-
 public class CutUrlApiController {
 
     private final CutUrlPort cutUrlPort;

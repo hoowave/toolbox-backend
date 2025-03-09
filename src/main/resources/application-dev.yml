@@ -4,6 +4,7 @@ config:
   domain: "http://localhost:8080/"
   admin-id: "admin"
   admin-pw: "admin"
+  jwt-secret-key: "a_hoowave_and_secure_256_bit_secret_key_for_jwt"
 
 spring:
   datasource:

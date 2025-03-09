@@ -1,4 +1,4 @@
-package com.tools.toolbox.config;
+package com.tools.toolbox.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
