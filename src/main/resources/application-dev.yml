@@ -2,6 +2,8 @@
 
 config:
   domain: "http://localhost:8080/"
+  admin-id: "admin"
+  admin-pw: "admin"
 
 spring:
   datasource:

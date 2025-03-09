@@ -11,4 +11,6 @@ import org.springframework.context.annotation.Configuration;
 @Setter
 public class ToolBoxConfig {
     private String domain;
+    private String adminId;
+    private String adminPw;
 }
