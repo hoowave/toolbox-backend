@@ -19,7 +19,6 @@ public class CutUrl {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Pattern(regexp = "^(https?://|www\\.)[\\w.-]+(?:\\.[\\w.-]+)+[/\\w\\-._~:/?#\\[\\]@!$&'()*+,;=]*$")
     @Column(nullable = false, unique = true)
     private String originalUrl;
 

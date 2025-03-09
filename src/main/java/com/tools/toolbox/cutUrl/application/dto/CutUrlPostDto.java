@@ -1,5 +1,6 @@
 package com.tools.toolbox.cutUrl.application.dto;
 
+import com.tools.toolbox.common.exception.BaseException;
 import com.tools.toolbox.common.response.CommonResponse;
 import com.tools.toolbox.common.response.MessageCode;
 import com.tools.toolbox.common.response.ResponseType;
@@ -8,19 +9,23 @@ import com.tools.toolbox.cutUrl.core.info.CutUrlInfo;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.validator.routines.UrlValidator;
 
 public class CutUrlPostDto {
 
     @Getter
     @Setter
     public static class Request {
-        @Pattern(regexp = "^(https?://)?(www\\.)?[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+([/\\w\\-._~:/?#\\[\\]@!$&'()*+,;=]*)?$")
         private String originalUrl;
 
         public CutUrlPostCmd toCommand() {
             if (!originalUrl.startsWith("http://") && !originalUrl.startsWith("https://")) {
                 originalUrl = "http://" + originalUrl;
             }
+
+            if (!UrlValidator.getInstance().isValid(originalUrl))
+                throw new BaseException(MessageCode.COMMON_INVALID_PARAMETER.getMessage());
+
             return CutUrlPostCmd.builder()
                     .originalUrl(originalUrl)
                     .build();
