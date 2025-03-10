@@ -6,7 +6,6 @@ import com.tools.toolbox.common.response.MessageCode;
 import com.tools.toolbox.common.response.ResponseType;
 import com.tools.toolbox.cutUrl.core.command.CutUrlPostCmd;
 import com.tools.toolbox.cutUrl.core.info.CutUrlInfo;
-import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.validator.routines.UrlValidator;

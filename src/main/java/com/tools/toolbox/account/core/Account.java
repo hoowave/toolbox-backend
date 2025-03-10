@@ -22,25 +22,25 @@ public class Account {
     private String userId;
 
     @Column(nullable = false)
-    private String userPw;
+    private String password;
 
-    @Column(nullable = false, unique = true)
-    private String userEmail;
+    @Column(nullable = false)
+    private String email;
 
-    @Column(nullable = false, unique = true)
-    private String userPhone;
+    @Column(nullable = false)
+    private String phone;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AccountRole role;
 
     @Builder
-    public Account(String name, String userId, String userPw, String userEmail, String userPhone, AccountRole role) {
+    public Account(String name, String userId, String password, String email, String phone, AccountRole role) {
         this.name = name;
         this.userId = userId;
-        this.userPw = userPw;
-        this.userEmail = userEmail;
-        this.userPhone = userPhone;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
         this.role = role;
     }
 
