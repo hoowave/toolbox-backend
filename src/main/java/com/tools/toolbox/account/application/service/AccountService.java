@@ -10,6 +10,7 @@ import com.tools.toolbox.account.core.info.RegisterInfo;
 import com.tools.toolbox.common.exception.BaseException;
 import com.tools.toolbox.common.response.MessageCode;
 import com.tools.toolbox.utils.JwtUtil;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,7 @@ public class AccountService implements AccountPort {
     private final JwtUtil jwtUtil;
 
     @Override
+    @Transactional
     public RegisterInfo register(RegisterCmd registerCmd) {
         Optional<Account> existUserId = accountRepositoryPort.findByUserId(registerCmd.getUserId());
         if (existUserId.isPresent()) {
@@ -37,6 +39,7 @@ public class AccountService implements AccountPort {
     }
 
     @Override
+    @Transactional
     public LoginInfo login(LoginCmd loginCmd) {
         Optional<Account> existUserId = accountRepositoryPort.findByUserId(loginCmd.getUserId());
         if (existUserId.isEmpty()) throw new BaseException(MessageCode.LOGIN_FAIL.getMessage());

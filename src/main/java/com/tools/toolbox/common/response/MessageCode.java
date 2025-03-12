@@ -20,7 +20,14 @@ public enum MessageCode {
     REGISTER_SUCCESS("회원가입이 완료되었습니다."),
     REGISTER_EXIST_ID("이미 존재하는 아이디입니다."),
     LOGIN_FAIL("아이디 또는 비밀번호를 확인해주세요."),
-    LOGIN_SUCCESS("로그인이 완료되었습니다.");
+    LOGIN_SUCCESS("로그인이 완료되었습니다."),
+
+    BOARD_WRITE_SUCCESS("게시글 작성이 완료되었습니다."),
+    BOARD_LIST_SUCCESS("게시글 목록을 불러왔습니다."),
+    BOARD_DETAILS_SUCCESS("게시글을 불러왔습니다."),
+    BOARD_DETAILS_ERROR("존재하지 않는 게시글입니다.")
+
+    ;
 
     private final String message;
 

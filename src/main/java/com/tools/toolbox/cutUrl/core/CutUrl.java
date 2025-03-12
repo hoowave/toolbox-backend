@@ -34,5 +34,4 @@ public class CutUrl {
         this.uuid = uuid;
         this.createdAt = format.format(new Date());
     }
-
 }

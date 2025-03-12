@@ -32,9 +32,4 @@ public class AccountApiController {
         return responseDto.toResponse();
     }
 
-    @GetMapping("/test")
-    public void test(){
-        System.out.println("Accept");
-    }
-
 }

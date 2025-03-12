@@ -30,7 +30,7 @@ public class ApiTestController {
         return responseDto.toResponse();
     }
 
-    @PostMapping("")
+    @PostMapping()
     public CommonResponse<Object> doPost(
             @RequestBody ApiTestPostDto.Request request
     ) {

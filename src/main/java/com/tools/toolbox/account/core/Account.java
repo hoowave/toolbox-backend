@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Getter
 @NoArgsConstructor
 @Entity
@@ -34,14 +37,19 @@ public class Account {
     @Column(nullable = false)
     private AccountRole role;
 
+    @Column(nullable = false)
+    private String createdAt;
+
     @Builder
     public Account(String name, String userId, String password, String email, String phone, AccountRole role) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         this.name = name;
         this.userId = userId;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.role = role;
+        this.createdAt = format.format(new Date());
     }
 
 }

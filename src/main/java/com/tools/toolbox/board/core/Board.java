@@ -1,11 +1,17 @@
 package com.tools.toolbox.board.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tools.toolbox.account.core.Account;
+import com.tools.toolbox.board.core.command.BoardPostCmd;
 import com.tools.toolbox.board.core.enums.BoardStatus;
 import com.tools.toolbox.boardcategory.core.BoardCategory;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Getter
 @NoArgsConstructor
@@ -17,12 +23,12 @@ public class Board {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category", nullable = false)
-    private BoardCategory category;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private Account author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category", nullable = false)
+    private BoardCategory category;
 
     @Column(nullable = false)
     private String title;
@@ -37,4 +43,19 @@ public class Board {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private BoardStatus status;
+
+    @Column(nullable = false)
+    private String createdAt;
+
+    @Builder
+    public Board(Account author, BoardCategory boardCategory, BoardPostCmd boardPostCmd) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        this.author = author;
+        this.category = boardCategory;
+        this.title = boardPostCmd.getTitle();
+        this.content = boardPostCmd.getContent();
+        this.hit = 0;
+        this.status = BoardStatus.VISIBLE;
+        this.createdAt = format.format(new Date());
+    }
 }
