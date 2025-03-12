@@ -15,7 +15,6 @@ public class BoardCategoryAdapter implements BoardCategoryRepositoryPort {
 
     private final BoardCategoryJpaRepository boardCategoryRepository;
 
-
     @Override
     @PostConstruct
     @Transactional
