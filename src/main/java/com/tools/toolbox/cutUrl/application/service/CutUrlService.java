@@ -25,11 +25,11 @@ public class CutUrlService implements CutUrlPort {
 
     @Override
     @Transactional
-    public CutUrlInfo process(CutUrlGetCmd cutUrlGetCmd){
-        Optional<CutUrl> existCutUrl = cutUrlRepositoryPort.findByUuid(cutUrlGetCmd.getUuid());
-        if(existCutUrl.isEmpty()) throw new BaseException(MessageCode.CUTURL_PROCESS_ERROR.getMessage());
-        String transUrl = toolBoxConfig.getDomain() + existCutUrl.get().getUuid();
-        var cutUrlInfo = new CutUrlInfo(existCutUrl.get(), transUrl);
+    public CutUrlInfo process(CutUrlGetCmd cutUrlGetCmd) {
+        var cutUrlEntity = cutUrlRepositoryPort.findByUuid(cutUrlGetCmd.getUuid())
+                .orElseThrow(() -> new BaseException(MessageCode.CUTURL_PROCESS_ERROR.getMessage()));
+        String transUrl = toolBoxConfig.getDomain() + cutUrlEntity.getUuid();
+        var cutUrlInfo = new CutUrlInfo(cutUrlEntity, transUrl);
         return cutUrlInfo;
     }
 
@@ -37,7 +37,7 @@ public class CutUrlService implements CutUrlPort {
     @Transactional
     public CutUrlInfo translate(CutUrlPostCmd cutUrlPostCmd) {
         Optional<CutUrl> existCutUrl = cutUrlRepositoryPort.findByOriginalUrl(cutUrlPostCmd.getOriginalUrl());
-        if (existCutUrl.isPresent()){
+        if (existCutUrl.isPresent()) {
             String transUrl = toolBoxConfig.getDomain() + existCutUrl.get().getUuid();
             var cutUrlInfo = new CutUrlInfo(existCutUrl.get(), transUrl);
             return cutUrlInfo;

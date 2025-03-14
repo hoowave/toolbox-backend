@@ -4,10 +4,10 @@ import com.tools.toolbox.board.core.Board;
 import lombok.Getter;
 
 @Getter
-public class BoardPostInfo {
+public class BoardIdInfo {
     private Long id;
 
-    public BoardPostInfo(Board board){
+    public BoardIdInfo(Board board){
         this.id = board.getId();
     }
 }

@@ -1,8 +1,7 @@
 package com.tools.toolbox.board.application.dto;
 
-import com.tools.toolbox.board.core.command.BoardPostCmd;
+import com.tools.toolbox.board.core.command.BoardPutCmd;
 import com.tools.toolbox.board.core.info.BoardIdInfo;
-import com.tools.toolbox.boardcategory.core.enums.CategoryType;
 import com.tools.toolbox.common.response.CommonResponse;
 import com.tools.toolbox.common.response.MessageCode;
 import com.tools.toolbox.common.response.ResponseType;
@@ -11,13 +10,12 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-public class BoardPostDto {
+public class BoardPutDto {
 
     @Getter
     @Setter
-    public static class Request{
-
-        private CategoryType category;
+    public static class Request {
+        private Long id;
 
         @NotEmpty
         @Size(min = 3, max = 100)
@@ -27,10 +25,10 @@ public class BoardPostDto {
         @Size(min = 10)
         private String content;
 
-        public BoardPostCmd toCommand(String userId){
-            return BoardPostCmd.builder()
+        public BoardPutCmd toCommand(String userId) {
+            return BoardPutCmd.builder()
                     .userId(userId)
-                    .category(category)
+                    .id(id)
                     .title(title)
                     .content(content)
                     .build();
@@ -49,7 +47,7 @@ public class BoardPostDto {
             return CommonResponse.builder()
                     .responseType(ResponseType.SUCCESS)
                     .data(this)
-                    .message(MessageCode.BOARD_WRITE_SUCCESS.getMessage())
+                    .message(MessageCode.BOARD_MODIFY_SUCCESS.getMessage())
                     .build();
         }
 

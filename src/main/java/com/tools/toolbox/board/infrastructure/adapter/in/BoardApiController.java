@@ -1,8 +1,6 @@
 package com.tools.toolbox.board.infrastructure.adapter.in;
 
-import com.tools.toolbox.board.application.dto.BoardDetailsDto;
-import com.tools.toolbox.board.application.dto.BoardListDto;
-import com.tools.toolbox.board.application.dto.BoardPostDto;
+import com.tools.toolbox.board.application.dto.*;
 import com.tools.toolbox.board.application.port.in.BoardPort;
 import com.tools.toolbox.boardcategory.core.enums.CategoryType;
 import com.tools.toolbox.common.response.CommonResponse;
@@ -54,15 +52,24 @@ public class BoardApiController {
 
     @PutMapping()
     public CommonResponse<Object> doPut(
-//            @AuthenticationPrincipal String userId,
-//            @Valid @RequestBody BoardPutDto.Request request
+            @AuthenticationPrincipal String userId,
+            @Valid @RequestBody BoardPutDto.Request request
     ) {
-        return null;
+        var boardPutCmd = request.toCommand(userId);
+        var info = boardPort.modify(boardPutCmd);
+        var responseDto = new BoardPutDto.Response(info);
+        return responseDto.toResponse();
     }
 
     @DeleteMapping()
-    public CommonResponse<Object> doDelete() {
-        return null;
+    public CommonResponse<Object> doDelete(
+            @AuthenticationPrincipal String userId,
+            @Valid @RequestBody BoardDeleteDto.Request request
+    ) {
+        var boardDeleteCmd = request.toCommand(userId);
+        var info = boardPort.delete(boardDeleteCmd);
+        var responseDto = new BoardDeleteDto.Response(info);
+        return responseDto.toResponse();
     }
 
 }
