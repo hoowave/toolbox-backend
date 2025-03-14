@@ -2,6 +2,7 @@
 
 config:
   domain: "http://localhost:8080/"
+  jwt-secret-key: "a_hoowave_and_secure_256_bit_secret_key_for_jwt"
 
 spring:
   datasource:
