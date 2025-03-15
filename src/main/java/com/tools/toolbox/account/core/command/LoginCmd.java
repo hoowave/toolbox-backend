@@ -1,6 +1,5 @@
 package com.tools.toolbox.account.core.command;
 
-import com.tools.toolbox.account.core.Account;
 import lombok.Builder;
 import lombok.Getter;
 
