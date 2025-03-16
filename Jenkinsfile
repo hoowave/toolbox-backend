@@ -7,9 +7,17 @@ pipeline {
                 git branch: 'develop', url: 'https://github.com/hoowave/toolbox-backend.git'
             }
         }
+        stage('Set Permissions') {
+            steps {
+                script {
+                    sh 'sudo chmod -R 777 /var/lib/jenkins/workspace/toolbox-dev-cicd'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
+                    sh ''
                     sh 'sudo ./gradlew clean build --refresh-dependencies'
                 }
             }
