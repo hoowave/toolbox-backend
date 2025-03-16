@@ -25,22 +25,14 @@ pipeline {
         stage('Stop Previous Application') {
             steps {
                 script {
-                    sh '''
-                    PID=$(ps aux | grep 'toolbox-0.0.1-SNAPSHOT.jar' | grep -v grep | awk '{print $2}')
-                    if [ -n "$PID" ]; then
-                        echo "Killing previous process with PID: $PID"
-                        kill $PID
-                    else
-                        echo "No previous process found"
-                    fi
-                    '''
+                    sh 'pkill -f toolbox-0.0.1-SNAPSHOT.jar'
                 }
             }
         }
         stage('Run JAR') {
             steps {
                 script {
-                    sh 'nohup java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
+                    sh 'java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
                 }
             }
         }
