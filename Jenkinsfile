@@ -41,9 +41,11 @@ pipeline {
         stage('Deploy & Run') {
             steps {
                 script {
-                    sh 'source /etc/profile.d/datasource_env.sh'
-                    sh 'chmod +x start.sh'
-                    sh './start.sh'
+                    sh '''
+                        source /etc/profile.d/datasource_env.sh
+                        chmod +x start.sh
+                        ./start.sh
+                    '''
                 }
             }
         }
