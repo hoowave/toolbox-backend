@@ -25,7 +25,7 @@ pipeline {
         stage('Stop Previous Application') {
             steps {
                 script {
-                    sh 'pkill -f toolbox-0.0.1-SNAPSHOT.jar'
+                    sh 'pkill -f toolbox-0.0.1-SNAPSHOT.jar || true'
                 }
             }
         }
