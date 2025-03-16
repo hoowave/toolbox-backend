@@ -13,6 +13,7 @@ public class BoardListInfo {
 
     @Getter
     public static class BoardInfo{
+        private Long id;
         private String author;
         private String title;
         private int hit;
@@ -20,6 +21,7 @@ public class BoardListInfo {
         private String createdAt;
 
         public BoardInfo(Board board) {
+            this.id = board.getId();
             this.author = board.getAuthor().getUserId();
             this.title = board.getTitle();
             this.hit = board.getHit();
@@ -31,6 +33,7 @@ public class BoardListInfo {
     private List<BoardInfo> contents;
     private int pageNumber;
     private int totalPageNumber;
+    private Long totalNumber;
     private boolean isFirst;
     private boolean isLast;
     private boolean isEmpty;
@@ -40,7 +43,8 @@ public class BoardListInfo {
                 .map(BoardInfo::new)
                 .collect(Collectors.toList());
         this.pageNumber = boardList.getNumber();
-        this.totalPageNumber = boardList.getTotalPages() - 1;
+        this.totalPageNumber = boardList.getTotalPages();
+        this.totalNumber = boardList.getTotalElements();
         this.isFirst = boardList.isFirst();
         this.isLast = boardList.isLast();
         this.isEmpty = boardList.isEmpty();

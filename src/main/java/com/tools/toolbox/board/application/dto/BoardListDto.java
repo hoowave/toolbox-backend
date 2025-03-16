@@ -38,6 +38,7 @@ public class BoardListDto {
         private List<BoardListInfo.BoardInfo> content;
         private int pageNumber;
         private int totalPageNumber;
+        private Long totalNumber;
         private boolean isFirst;
         private boolean isLast;
         private boolean isEmpty;
@@ -46,6 +47,7 @@ public class BoardListDto {
             this.content = boardListInfo.getContents();
             this.pageNumber = boardListInfo.getPageNumber();
             this.totalPageNumber = boardListInfo.getTotalPageNumber();
+            this.totalNumber = boardListInfo.getTotalNumber();
             this.isFirst = boardListInfo.isFirst();
             this.isLast = boardListInfo.isLast();
             this.isEmpty = boardListInfo.isEmpty();

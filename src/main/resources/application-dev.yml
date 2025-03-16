@@ -8,8 +8,8 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/d_toolbox?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: 0318
+    username: hoowave
+    password:
 
   jpa:
     database-platform: org.hibernate.dialect.MariaDBDialect
