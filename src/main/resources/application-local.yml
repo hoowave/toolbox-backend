@@ -7,6 +7,7 @@ config:
 # System 환경변수 처리
 spring:
   datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/d_toolbox
     username: hoowave
     password:
