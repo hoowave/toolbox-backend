@@ -32,7 +32,7 @@ pipeline {
         stage('Run JAR') {
             steps {
                 script {
-                    sh 'java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
+                    sh 'setsid java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
                 }
             }
         }
