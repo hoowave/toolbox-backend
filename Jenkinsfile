@@ -1,12 +1,19 @@
 pipeline {
     agent any
 
+    environment {
+        JAR_NAME = "toolbox-0.0.1-SNAPSHOT.jar"
+        BUILD_DIR = "build/libs"
+        SCRIPT_NAME = "start.sh"
+    }
+
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'develop', url: 'https://github.com/hoowave/toolbox-backend.git'
             }
         }
+
         stage('Set Permissions') {
             steps {
                 script {
@@ -14,6 +21,7 @@ pipeline {
                 }
             }
         }
+
         stage('Build') {
             steps {
                 script {
@@ -21,47 +29,30 @@ pipeline {
                 }
             }
         }
+
         stage('Verify JAR') {
             steps {
                 script {
-                    sh 'ls -l build/libs'
+                    sh "ls -l ${BUILD_DIR}/${JAR_NAME}"
                 }
             }
         }
-        stage('Stop Previous Application') {
+
+        stage('Deploy & Run') {
             steps {
                 script {
-                    sh 'pkill -f toolbox-0.0.1-SNAPSHOT.jar || true'
-                    sh 'sleep 3'  // 기존 프로세스 종료 대기
-                }
-            }
-        }
-        stage('Run JAR') {
-            steps {
-                script {
-                    sh 'nohup java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar > app.log 2>&1 & disown'
-                }
-            }
-        }
-        stage('Check Running Process') {
-            steps {
-                script {
-                    sh 'ps aux | grep toolbox-0.0.1-SNAPSHOT.jar'
-                }
-            }
-        }
-        stage('Check Logs') {
-            steps {
-                script {
-                    sh 'tail -n 50 app.log'
+                    sh 'chmod +x start.sh'
+                    sh './start.sh'
                 }
             }
         }
     }
+
     post {
         success {
-            echo '빌드 및 실행 성공'
+            echo '빌드 및 배포 성공'
         }
+
         failure {
             echo '빌드 또는 실행 실패'
         }
