@@ -5,4 +5,4 @@ spring:
   application:
     name: toolbox
   profiles:
-    active: dev
+    active: local

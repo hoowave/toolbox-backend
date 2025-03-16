@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh './gradlew clean build --refresh-dependencies'
+                    sh 'sudo ./gradlew clean build --refresh-dependencies'
                 }
             }
         }
