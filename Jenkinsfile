@@ -38,13 +38,11 @@ pipeline {
             }
         }
 
-        stage('Deploy & Run') {
+        stage('Deploy') {
             steps {
                 script {
                     sh '''
-                        source /etc/profile.d/datasource_env.sh
                         chmod +x start.sh
-                        ./start.sh
                     '''
                 }
             }

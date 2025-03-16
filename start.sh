@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source the environment variables
+source /etc/profile.d/datasource_env.sh
+
 JAR_PATH="build/libs/toolbox-0.0.1-SNAPSHOT.jar"
 LOG_FILE="app.log"
 PID_FILE="app.pid"
@@ -12,8 +15,8 @@ if [ -f $PID_FILE ]; then
 fi
 
 echo "환경 변수 확인..."
-echo "DB_URL: ${$DB_URL}"
-echo "DB_USERNAME: ${$DB_USERNAME}"
+echo "DB_URL: ${DB_URL}"
+echo "DB_USERNAME: ${DB_USERNAME}"
 echo "DB_PASSWORD: ${DB_PASSWORD:0:3}..."
 
 echo "새 애플리케이션 실행..."
