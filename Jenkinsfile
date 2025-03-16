@@ -9,13 +9,41 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building...'
+                script {
+                    sh './gradlew clean build --refresh-dependencies'
+                }
             }
         }
-        stage('Deploy') {
+        stage('Stop Previous Application') {
             steps {
-                echo 'Deploying...'
+                script {
+                    sh '''
+                    PID=$(ps aux | grep 'toolbox-0.0.1-SNAPSHOT.jar' | grep -v grep | awk '{print $2}')
+                    if [ -n "$PID" ]; then
+                        echo "Killing previous process with PID: $PID"
+                        kill $PID
+                    else
+                        echo "No previous process found"
+                    fi
+                    '''
+                }
             }
+        }
+        stage('Run JAR') {
+            steps {
+                script {
+                    sh 'nohup java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo '빌드 및 실행 성공'
+        }
+
+        failure {
+            echo '빌드 또는 실행 실패'
         }
     }
 }
