@@ -8,11 +8,10 @@ LOG_FILE="app.log"
 PID_FILE="app.pid"
 
 echo "기존 애플리케이션 종료 중..."
-if [ -f $PID_FILE ]; then
-    pkill -F $PID_FILE
-    rm $PID_FILE
-    sleep 3
-fi
+sudo pkill -9 -f "java -jar build/libs/toolbox-0.0.1-SNAPSHOT.jar"
+rm -rf $LOG_FILE
+rm -rf $PID_FILE
+sleep 3
 
 echo "환경 변수 확인..."
 echo "DB_URL: ${DB_URL}"

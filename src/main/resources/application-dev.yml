@@ -1,7 +1,7 @@
 # application-dev.yml
 
 config:
-  domain: "http://api-dev.hoowave.org/"
+  domain: "https://api-dev.hoowave.org/"
   jwt-secret-key: "a_hoowave_and_secure_256_bit_secret_key_for_jwt"
 
 # System 환경변수 처리
