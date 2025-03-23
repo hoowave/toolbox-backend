@@ -64,11 +64,15 @@ public class Board {
         this.updatedAt = date;
     }
 
+    public void increaseHit() {
+        this.hit++;
+    }
+
     public boolean isOwned(String userId) {
         return this.author.getUserId().equals(userId);
     }
 
-    public void setStatus(BoardStatus status){
+    public void setStatus(BoardStatus status) {
         this.status = status;
     }
 

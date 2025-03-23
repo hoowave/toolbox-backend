@@ -17,7 +17,7 @@ public class CorsConfig {
                                 "http://localhost:5173",
                                 "https://dev.hoowave.org"
                         )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowCredentials(true);
             }
         };

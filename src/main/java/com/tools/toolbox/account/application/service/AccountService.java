@@ -46,7 +46,7 @@ public class AccountService implements AccountPort {
         if (!passwordEncoder.matches(loginCmd.getPassword(), existUserId.get().getPassword()))
             throw new BaseException(MessageCode.LOGIN_FAIL.getMessage());
         String token = jwtUtil.generateToken(existUserId.get().getUserId(), existUserId.get().getRole().name());
-        var loginInfo = new LoginInfo(existUserId.get().getUserId(),token);
+        var loginInfo = new LoginInfo(existUserId.get() ,token);
         return loginInfo;
     }
 }

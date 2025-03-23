@@ -46,6 +46,7 @@ public class BoardService implements BoardPort {
     public BoardDetailsInfo readDetails(BoardDetailsCmd boardDetailsCmd) {
         Board boardEntity = boardRepositoryPort.findById(boardDetailsCmd.getId())
                 .orElseThrow(() -> new BaseException(MessageCode.BOARD_DETAILS_ERROR.getMessage()));
+        boardEntity.increaseHit();
         var info = new BoardDetailsInfo(boardEntity);
         return info;
     }

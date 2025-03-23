@@ -1,6 +1,7 @@
 package com.tools.toolbox.account.application.dto;
 
 import com.tools.toolbox.account.core.command.LoginCmd;
+import com.tools.toolbox.account.core.enums.AccountRole;
 import com.tools.toolbox.account.core.info.LoginInfo;
 import com.tools.toolbox.common.response.CommonResponse;
 import com.tools.toolbox.common.response.MessageCode;
@@ -37,12 +38,14 @@ public class LoginDto {
 
     @Getter
     public static class Response{
-        private String userId;
         private String token;
+        private String userId;
+        private AccountRole role;
 
         public Response(LoginInfo loginInfo){
-            this.userId = loginInfo.getUserId();
             this.token = loginInfo.getToken();
+            this.userId = loginInfo.getUserId();
+            this.role = loginInfo.getRole();
         }
 
         public CommonResponse<Object> toResponse(){

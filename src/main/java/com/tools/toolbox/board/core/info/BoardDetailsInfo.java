@@ -16,7 +16,7 @@ public class BoardDetailsInfo {
 
     public BoardDetailsInfo(Board board) {
         this.id = board.getId();
-        this.author = board.getAuthor().getName();
+        this.author = board.getAuthor().getUserId();
         this.title = board.getTitle();
         this.content = board.getContent();
         this.hit = board.getHit();

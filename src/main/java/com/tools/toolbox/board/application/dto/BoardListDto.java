@@ -22,7 +22,7 @@ public class BoardListDto {
 
         public Request(CategoryType categoryType, int page) {
             this.categoryType = categoryType;
-            this.page = page;
+            this.page = page - 1;
         }
 
         public BoardListCmd toCommand() {
