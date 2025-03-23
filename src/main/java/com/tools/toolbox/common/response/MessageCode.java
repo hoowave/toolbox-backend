@@ -10,6 +10,7 @@ public enum MessageCode {
     COMMON_INVALID_PARAMETER("요청한 값이 올바르지 않습니다."),
     COMMON_UNAUTHORIZED("토큰이 만료되었습니다."),
     COMMON_FORBIDDEN("권한이 없습니다."),
+    COMMON_INVALID_TOKEN("유효하지 않은 토큰입니다."),
 
     CUTURL_SUCCESS("URL 변환이 완료되었습니다."),
     CUTURL_PROCESS_ERROR("존재하지 않는 URL입니다."),
@@ -31,6 +32,8 @@ public enum MessageCode {
     BOARD_MODIFY_SUCCESS("게시글 수정이 완료되었습니다."),
     BOARD_DELETE_SUCCESS("게시글이 삭제되었습니다."),
 
+    REVIEW_WRITE_SUCCESS("사용자 후기 작성이 완료되었습니다."),
+    REVIEW_LIST_SUCCESS("사용자 후기 목록을 불러왔습니다.")
     ;
 
     private final String message;

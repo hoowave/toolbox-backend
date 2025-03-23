@@ -1,9 +1,14 @@
 package com.tools.toolbox.config.security;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tools.toolbox.common.exception.BaseException;
+import com.tools.toolbox.common.response.ErrorResponse;
+import com.tools.toolbox.common.response.MessageCode;
 import com.tools.toolbox.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.security.SignatureException;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,11 +48,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(username, null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+            } catch (ExpiredJwtException e) {
+                sendErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, MessageCode.COMMON_UNAUTHORIZED.getMessage());
+                return;
+            } catch (MalformedJwtException e) {
+                sendErrorResponse(response, HttpServletResponse.SC_UNAUTHORIZED, MessageCode.COMMON_INVALID_TOKEN.getMessage());
+                return;
             } catch (Exception e) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid Token");
+                sendErrorResponse(response, HttpServletResponse.SC_FORBIDDEN, MessageCode.COMMON_FORBIDDEN.getMessage());
                 return;
             }
         }
         chain.doFilter(request, response);
+    }
+
+    private void sendErrorResponse(HttpServletResponse response, int status, String message) throws IOException {
+        response.setStatus(status);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonResponse = objectMapper.writeValueAsString(ErrorResponse.response(message));
+
+        response.getWriter().write(jsonResponse);
     }
 }
